@@ -2,21 +2,23 @@ package szIndustry.MonPoke;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
 import szIndustry.MonPoke.view.Screens;
-import szIndustry.MonPoke.view.screens.MenuScreen;
+import szIndustry.MonPoke.view.ui.menu.MenuScreen;
+import szIndustry.MonPoke.view.ui.menu.PokemonList;
 
 public class Main extends Game {
 
     // Aquí puedes declarar variables globales como el AssetManager
     // private AssetManager assetManager;
     public Screens menu;
+    public Screens pokemonList;
 
     @Override
     public void create() {
         // Podrías inicializar el AssetService o AudioService aquí.
 
         menu = new MenuScreen(this);
+        pokemonList = new PokemonList(this);
         setScreen(menu);
     }
 
