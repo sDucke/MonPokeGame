@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.model.pokemon.PokemonModel;
+import szIndustry.MonPoke.utils.ui.ButtonEffects;
 import szIndustry.MonPoke.view.Screens;
 
 public class PokemonList extends Screens {
@@ -44,7 +45,7 @@ public class PokemonList extends Screens {
         btnBack.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new MenuScreen(game)); // ← vuelve al menú principal
+                btnBack.addListener(new ButtonEffects(actor -> game.setScreen(new MenuScreen(game))));// ← back
             }
         });
 
@@ -82,7 +83,7 @@ public class PokemonList extends Screens {
         root.add(scroll).expand().fill();
     }
 
-    // ===== FUNCIÓN DE ESCALADO UNIVERSAL =====
+    // ===== FUNCIÓN DE ESCALADO  =====
     private Image scaleImage(Texture tex, float desiredWidth) {
         Image img = new Image(tex);
         float scale = desiredWidth / tex.getWidth();
