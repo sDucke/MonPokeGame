@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.view.Screens;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
+import szIndustry.MonPoke.view.screens.TestScreens;
 
 public class MenuScreen extends Screens {
 
@@ -49,7 +50,7 @@ public class MenuScreen extends Screens {
 
         playImage = new Image(playTexture);
         playImage.setPosition((width - 700f) / 2f + 80, height - 500);
-        playImage.addListener(new ButtonEffects(actor -> System.out.println("Iniciando nueva partida...")));
+        playImage.addListener(new ButtonEffects(actor -> game.setScreen(new TestScreens(game))));
 
         listImage = new Image(listTexture);
         listImage.setPosition((width - 700f) / 2f + 700 - listTexture.getWidth() - 25, height - 300);
