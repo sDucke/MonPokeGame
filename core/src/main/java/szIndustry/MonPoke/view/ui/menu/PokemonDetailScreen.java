@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.model.pokemon.PokemonModel;
 import szIndustry.MonPoke.model.pokemon.PokemonStatsBox;
+import szIndustry.MonPoke.utils.ui.ScaleFunction;
 import szIndustry.MonPoke.view.Screens;
 
 public class PokemonDetailScreen extends Screens {
@@ -44,7 +45,7 @@ public class PokemonDetailScreen extends Screens {
 
         // ===== BOTÓN VOLVER (Imagen escalada) =====
         Texture backTexture = new Texture("ui/back_button.png");
-        Image btnBack = scaleImage(backTexture, 120f); // mismo método que MenuScreen
+        Image btnBack = new ScaleFunction().scaleImage(backTexture, 120f); // mismo método que MenuScreen
         btnBack.setPosition(10, viewport.getWorldHeight() - btnBack.getHeight() - 10);
 
         btnBack.addListener(new ClickListener() {
@@ -66,7 +67,7 @@ public class PokemonDetailScreen extends Screens {
         content.defaults().pad(20);
 
         // Pokémon image
-        Image img = scaleImage(new Texture(Gdx.files.internal(model.imagePath)), 300f);
+        Image img = new ScaleFunction().scaleImage(new Texture(Gdx.files.internal(model.imagePath)), 300f);
 
         Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
         Label lblName = new Label(model.name, titleStyle);
@@ -78,14 +79,6 @@ public class PokemonDetailScreen extends Screens {
         content.add(statsBox).expandX().fillX();
 
         root.add(content).expand().center();
-    }
-
-    // ===== FUNCIÓN DE ESCALADO UNIVERSAL =====
-    private Image scaleImage(Texture tex, float desiredWidth) {
-        Image img = new Image(tex);
-        float scale = desiredWidth / tex.getWidth();
-        img.setSize(desiredWidth, tex.getHeight() * scale);
-        return img;
     }
 
     @Override

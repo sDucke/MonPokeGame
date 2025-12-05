@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.model.pokemon.PokemonModel;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
+import szIndustry.MonPoke.utils.ui.ScaleFunction;
 import szIndustry.MonPoke.view.Screens;
 
 public class PokemonList extends Screens {
@@ -39,7 +40,7 @@ public class PokemonList extends Screens {
 
         // ===== BOTÓN VOLVER =====
         Texture backTexture = new Texture("ui/back_button.png");
-        Image btnBack = scaleImage(backTexture, 120f);
+        Image btnBack = new ScaleFunction().scaleImage(backTexture, 120f);
         btnBack.setPosition(10, viewport.getWorldHeight() - btnBack.getHeight() - 10);
 
         btnBack.addListener(new ClickListener() {
@@ -81,14 +82,6 @@ public class PokemonList extends Screens {
         scroll.setScrollingDisabled(true, false);
 
         root.add(scroll).expand().fill();
-    }
-
-    // ===== FUNCIÓN DE ESCALADO  =====
-    private Image scaleImage(Texture tex, float desiredWidth) {
-        Image img = new Image(tex);
-        float scale = desiredWidth / tex.getWidth();
-        img.setSize(desiredWidth, tex.getHeight() * scale);
-        return img;
     }
 
     @Override

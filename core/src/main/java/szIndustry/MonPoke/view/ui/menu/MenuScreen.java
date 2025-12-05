@@ -9,6 +9,7 @@ import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.view.Screens;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
 import szIndustry.MonPoke.view.screens.TestScreens;
+import szIndustry.MonPoke.utils.ui.ScaleFunction;
 
 public class MenuScreen extends Screens {
 
@@ -42,10 +43,10 @@ public class MenuScreen extends Screens {
         bgImage = new Image(bgTexture);
         bgImage.setSize(width, height);
 
-        bannerImage = scaleImage(bannerTexture, 700f);
+        bannerImage = new ScaleFunction().scaleImage(bannerTexture, 200f);
         bannerImage.setPosition((width - bannerImage.getWidth()) / 2f, height - 600);
 
-        trainerImage = scaleImage(trainerTexture, 340f);
+        trainerImage = new ScaleFunction().scaleImage(trainerTexture, 340f);
         trainerImage.setPosition(5, height - trainerImage.getHeight() - 10);
 
         playImage = new Image(playTexture);
@@ -75,16 +76,6 @@ public class MenuScreen extends Screens {
         stage.addActor(listImage);
         stage.addActor(loadImage);
         stage.addActor(mapImage);
-    }
-
-    // =======================
-    // Método auxiliar para escalar imágenes
-    // =======================
-    private Image scaleImage(Texture t, float desiredWidth) {
-        Image img = new Image(t);
-        float scale = desiredWidth / t.getWidth();
-        img.setSize(desiredWidth, t.getHeight() * scale);
-        return img;
     }
 
     @Override

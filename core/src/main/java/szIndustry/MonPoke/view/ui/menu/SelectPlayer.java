@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 import szIndustry.MonPoke.Main;
+import szIndustry.MonPoke.utils.ui.ScaleFunction;
 import szIndustry.MonPoke.view.Screens;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
 
@@ -30,8 +31,8 @@ public class SelectPlayer extends Screens {
         Texture p1Tex = new Texture("characters/player1.png");
         Texture p2Tex = new Texture("characters/playerG1.png");
 
-        Image player1 = scaleImage(p1Tex, 380f);
-        Image player2 = scaleImage(p2Tex, 380f);
+        Image player1 = new ScaleFunction().scaleImage(p1Tex, 380f);
+        Image player2 = new ScaleFunction().scaleImage(p2Tex, 380f);
 
         float spacing = 80f;
         float centerX = V_WIDTH / 2f;
@@ -58,23 +59,13 @@ public class SelectPlayer extends Screens {
 
         // ===== BOTÓN VOLVER =====
         Texture backTexture = new Texture("ui/back_button.png");
-        Image btnBack = scaleImage(backTexture, 120f);
+        Image btnBack = new ScaleFunction().scaleImage(backTexture, 120f);
         btnBack.setPosition(10, viewport.getWorldHeight() - btnBack.getHeight() - 10);
 
         // Usamos ButtonEffects también para el botón volver
         btnBack.addListener(new ButtonEffects(actor -> game.setScreen(new MenuScreen(game))));
 
         stage.addActor(btnBack);
-    }
-
-    // =======================
-    // FUNCIÓN PARA ESCALAR
-    // =======================
-    private Image scaleImage(Texture t, float desiredWidth) {
-        Image img = new Image(t);
-        float scale = desiredWidth / t.getWidth();
-        img.setSize(desiredWidth, t.getHeight() * scale);
-        return img;
     }
 
     @Override
