@@ -46,7 +46,6 @@ public class SelectPlayer extends Screens {
         // ===== APLICAR EFECTO ButtonEffects =====
         player1.addListener(new ButtonEffects(actor -> {
             System.out.println("Seleccionaste a: Tony");
-            // game.setScreen(new BattleScreen(game, "PLAYER_1"));
         }));
 
         player2.addListener(new ButtonEffects(actor -> {

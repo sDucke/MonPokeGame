@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.model.pokemon.PokemonModel;
 import szIndustry.MonPoke.model.pokemon.PokemonStatsBox;
+import szIndustry.MonPoke.utils.ui.ButtonEffects;
 import szIndustry.MonPoke.utils.ui.ScaleFunction;
 import szIndustry.MonPoke.view.Screens;
 
@@ -45,15 +46,10 @@ public class PokemonDetailScreen extends Screens {
 
         // ===== BOTÓN VOLVER (Imagen escalada) =====
         Texture backTexture = new Texture("ui/back_button.png");
-        Image btnBack = new ScaleFunction().scaleImage(backTexture, 120f); // mismo método que MenuScreen
+        Image btnBack = new ScaleFunction().scaleImage(backTexture, 120f);
         btnBack.setPosition(10, viewport.getWorldHeight() - btnBack.getHeight() - 10);
 
-        btnBack.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                game.setScreen(new PokemonList(game));
-            }
-        });
+        btnBack.addListener(new ButtonEffects(actor -> game.setScreen(new PokemonList(game))));
 
         stage.addActor(btnBack);
 
