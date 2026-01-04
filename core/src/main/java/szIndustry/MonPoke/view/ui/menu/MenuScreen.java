@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import szIndustry.MonPoke.Main;
 import szIndustry.MonPoke.view.Screens;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
+import szIndustry.MonPoke.view.screens.MapScreen;
 import szIndustry.MonPoke.view.screens.TestScreens;
 import szIndustry.MonPoke.utils.ui.ScaleFunction;
 
@@ -51,7 +52,7 @@ public class MenuScreen extends Screens {
 
         playImage = new Image(playTexture);
         playImage.setPosition((width - 700f) / 2f + 80, height - 500);
-        playImage.addListener(new ButtonEffects(actor -> game.setScreen(new TestScreens(game))));
+        playImage.addListener(new ButtonEffects(actor -> game.setScreen(new MapScreen(game))));
 
         listImage = new Image(listTexture);
         listImage.setPosition((width - 700f) / 2f + 700 - listTexture.getWidth() - 25, height - 300);
@@ -59,7 +60,7 @@ public class MenuScreen extends Screens {
 
         loadImage = new Image(loadTexture);
         loadImage.setPosition(listImage.getX(), listImage.getY() - listTexture.getHeight() - 20);
-        loadImage.addListener(new ButtonEffects(actor -> System.out.println("Cargando partida...")));
+        loadImage.addListener(new ButtonEffects(actor -> game.setScreen(new TestScreens(game))));
 
         mapImage = new Image(mapTexture);
         mapImage.setPosition(listImage.getX(), listImage.getY() - listTexture.getHeight() - loadTexture.getHeight() - 40);

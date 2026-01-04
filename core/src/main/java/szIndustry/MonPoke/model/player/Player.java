@@ -6,88 +6,71 @@ import com.badlogic.gdx.math.Rectangle;
 import szIndustry.MonPoke.controller.player.VirtualController;
 
 public class Player {
-
     private float x, y;
-    private float speed = 140f;
+    private float speed = 5f; // 8 unidades (tiles) por segundo
 
-    // Texturas para cada dirección
     private Texture texUp, texDown, texLeft, texRight;
-    private Texture currentTexture; // La que se está dibujando actualmente
+    private Texture currentTexture;
 
-    private float width, height;
+    private final float WIDTH = 1f;  // 1 Tile de ancho
+    private final float HEIGHT = 1f; // 1 Tile de alto
     private Rectangle bounds;
 
     public Player(float startX, float startY) {
         this.x = startX;
         this.y = startY;
 
-        // Carga de las 4 imágenes individuales
         texUp = new Texture("characters/Player/arriba.png");
         texDown = new Texture("characters/Player/abajo.png");
         texLeft = new Texture("characters/Player/izquierda.png");
         texRight = new Texture("characters/Player/derecha.png");
 
-        // Empezamos mirando hacia abajo por defecto
         currentTexture = texDown;
-
-        width = currentTexture.getWidth();
-        height = currentTexture.getHeight();
-
-        bounds = new Rectangle(x, y, width, height);
+        bounds = new Rectangle(x, y, WIDTH, HEIGHT);
     }
 
     public void update(float delta, VirtualController ctrl) {
-        float moveSpeed = speed * delta;
+        float moveAmount = speed * delta;
 
-        // --- MOVIMIENTO Y CAMBIO DE TEXTURA ---
         if (!ctrl.usarJoystick) {
             if (ctrl.moverArriba) {
-                y += moveSpeed;
+                y += moveAmount;
                 currentTexture = texUp;
             } else if (ctrl.moverAbajo) {
-                y -= moveSpeed;
+                y -= moveAmount;
                 currentTexture = texDown;
             }
 
             if (ctrl.moverIzquierda) {
-                x -= moveSpeed;
+                x -= moveAmount;
                 currentTexture = texLeft;
             } else if (ctrl.moverDerecha) {
-                x += moveSpeed;
+                x += moveAmount;
                 currentTexture = texRight;
             }
-        }
-        else {
-            // Movimiento con joystick
-            x += ctrl.joyX * moveSpeed;
-            y += ctrl.joyY * moveSpeed;
+        } else {
+            x += ctrl.joyX * moveAmount;
+            y += ctrl.joyY * moveAmount;
 
-            // Determinar textura según el eje predominante del joystick
             if (Math.abs(ctrl.joyX) > Math.abs(ctrl.joyY)) {
                 currentTexture = (ctrl.joyX > 0) ? texRight : texLeft;
-            } else if (Math.abs(ctrl.joyY) > 0.1f) { // Umbral pequeño para evitar cambios erráticos
+            } else if (Math.abs(ctrl.joyY) > 0.1f) {
                 currentTexture = (ctrl.joyY > 0) ? texUp : texDown;
             }
         }
-
-        // Actualizar hitbox
+        // Actualizar la posición de la colisión
         bounds.setPosition(x, y);
     }
 
     public void draw(SpriteBatch batch) {
-        // Dibujamos siempre la textura actual
-        batch.draw(currentTexture, x, y, width, height);
+        batch.draw(currentTexture, x, y, WIDTH, HEIGHT);
     }
 
-    // Es importante liberar la memoria de las texturas
     public void dispose() {
-        texUp.dispose();
-        texDown.dispose();
-        texLeft.dispose();
-        texRight.dispose();
+        texUp.dispose(); texDown.dispose();
+        texLeft.dispose(); texRight.dispose();
     }
 
-    public Rectangle getBounds() { return bounds; }
     public float getX() { return x; }
     public float getY() { return y; }
 }
