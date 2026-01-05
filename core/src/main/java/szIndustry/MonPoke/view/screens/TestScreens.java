@@ -44,9 +44,9 @@ public class TestScreens extends Screens {
         // 1. CARGAR MAPA
         manager = new AssetManager();
         manager.setLoader(TiledMap.class, new TmxMapLoader());
-        manager.load("Maps/MonPoke.tmx", TiledMap.class);
+        manager.load("Maps/test.tmx", TiledMap.class);
         manager.finishLoading();
-        map = manager.get("Maps/MonPoke.tmx", TiledMap.class);
+        map = manager.get("Maps/test.tmx", TiledMap.class);
         // Esto imprimirá en la consola cuántas capas encontró
         System.out.println("Capas detectadas: " + map.getLayers().getCount());
 
