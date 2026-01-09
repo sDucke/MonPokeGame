@@ -21,22 +21,22 @@ public class KeyboardInput extends InputAdapter {
 
             case Input.Keys.W:
             case Input.Keys.UP:
-                ctrl.moverArriba = true;
+                ctrl.isUp = true;
                 return true;
 
             case Input.Keys.S:
             case Input.Keys.DOWN:
-                ctrl.moverAbajo = true;
+                ctrl.isDown = true;
                 return true;
 
             case Input.Keys.A:
             case Input.Keys.LEFT:
-                ctrl.moverIzquierda = true;
+                ctrl.isLeft = true;
                 return true;
 
             case Input.Keys.D:
             case Input.Keys.RIGHT:
-                ctrl.moverDerecha = true;
+                ctrl.isRight = true;
                 return true;
 
             case Input.Keys.E: // botón de interactuar
@@ -56,22 +56,22 @@ public class KeyboardInput extends InputAdapter {
 
             case Input.Keys.W:
             case Input.Keys.UP:
-                ctrl.moverArriba = false;
+                ctrl.isUp = false;
                 return true;
 
             case Input.Keys.S:
             case Input.Keys.DOWN:
-                ctrl.moverAbajo = false;
+                ctrl.isDown = false;
                 return true;
 
             case Input.Keys.A:
             case Input.Keys.LEFT:
-                ctrl.moverIzquierda = false;
+                ctrl.isLeft = false;
                 return true;
 
             case Input.Keys.D:
             case Input.Keys.RIGHT:
-                ctrl.moverDerecha = false;
+                ctrl.isRight = false;
                 return true;
 
             case Input.Keys.E:

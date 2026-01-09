@@ -2,17 +2,18 @@ package szIndustry.MonPoke.view.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import szIndustry.MonPoke.Main;
+import szIndustry.MonPoke.controller.player.KeyboardInput;
+import szIndustry.MonPoke.controller.player.VirtualController;
+import szIndustry.MonPoke.controller.map.MapManager;
+import szIndustry.MonPoke.model.player.Player;
 import szIndustry.MonPoke.utils.ui.ButtonEffects;
 import szIndustry.MonPoke.utils.ui.ScaleFunction;
 import szIndustry.MonPoke.view.Screens;
@@ -20,11 +21,15 @@ import szIndustry.MonPoke.view.ui.menu.MenuScreen;
 
 public class MapScreen extends Screens {
 
-    // --- MAPA Y RENDER ---
-    private TiledMap map;
-    private AssetManager manager;
+    // --- LÓGICA Y MUNDO ---
+    private MapManager mapManager;
+    private Player player;
+    private VirtualController ctrl;
     private OrthogonalTiledMapRenderer renderer;
     private OrthographicCamera camera;
+
+    // ESCALA: 1 unidad = 32 píxeles (Importante para que coincida con MapManager)
+    private final float UNIT_SCALE = 1 / 16f;
 
     // --- UI ---
     private Stage stage;
@@ -34,73 +39,80 @@ public class MapScreen extends Screens {
     public MapScreen(Main game) {
         super(game);
 
-        // 1. CARGA DEL MAPA CON ASSET MANAGER (Como en el mapa 2)
-        manager = new AssetManager();
-        manager.setLoader(TiledMap.class, new TmxMapLoader());
-        // Asegúrate de que el archivo esté en assets/TiledMaps/
-        manager.load("Maps/tilemap.tmx", TiledMap.class);
-        manager.finishLoading();
-        map = manager.get("Maps/tilemap.tmx", TiledMap.class);
+        // 1. CARGAR MAPA A TRAVÉS DEL MANAGER
+        // El Manager ahora se encarga de cargar el .tmx y procesar colisiones
+        mapManager = new MapManager("Maps/tilemap.tmx", UNIT_SCALE);
 
-        // 2. CONFIGURAR RENDERIZADOR
-        // LibGDX detectará automáticamente si el mapa usa CSV o Base64/Zlib
-        renderer = new OrthogonalTiledMapRenderer(map);
+        // 2. RENDERIZADOR ESCALADO
+        renderer = new OrthogonalTiledMapRenderer(mapManager.getMap(), UNIT_SCALE);
 
-        // 3. CONFIGURAR CÁMARA DEL MUNDO
-        // Usamos una vista de 400x240 para ver los tiles de 32px con buen tamaño
-        camera = new OrthographicCamera(400, 240);
-        // Posicionamos en 200,120 para ver la esquina inferior izquierda (0,0)
-        camera.position.set(200f, 120f, 0);
-        camera.update();
+        // 3. CÁMARA DEL MUNDO (Ver 20 tiles de ancho)
+        camera = new OrthographicCamera();
+        float aspectRatio = (float) Gdx.graphics.getHeight() / Gdx.graphics.getWidth();
+        camera.setToOrtho(false, 20, 20 * aspectRatio);
 
-        // 4. CONFIGURAR UI (Stage independiente con su propio Viewport)
+        // 4. JUGADOR Y CONTROLES
+        ctrl = new VirtualController();
+        player = new Player(10, 10); // Inicia en el tile 10,10
+
+        // 5. CONFIGURAR UI (Mantiene píxeles para botones nítidos)
         stage = new Stage(new FitViewport(V_WIDTH, V_HEIGHT));
-
-        // 5. BOTÓN REGRESAR
         texBack = new Texture("ui/back_button.png");
         btnBack = new ScaleFunction().scaleImage(texBack, 60f);
-        // Posicionamiento basado en coordenadas de píxeles (arriba a la izquierda)
         btnBack.setPosition(10, V_HEIGHT - btnBack.getHeight() - 10);
         btnBack.addListener(new ButtonEffects(actor -> game.setScreen(new MenuScreen(game))));
         stage.addActor(btnBack);
 
-        // 6. GESTIÓN DE INPUT
-        Gdx.input.setInputProcessor(stage);
+        // 6. INPUT MULTIPLEXER (Para que funcionen el botón y las teclas a la vez)
+        InputMultiplexer multiplexer = new InputMultiplexer();
+        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(new KeyboardInput(ctrl));
+        Gdx.input.setInputProcessor(multiplexer);
     }
 
     @Override
     public void render(float delta) {
-        // Color de limpieza (Azul cielo para depuración)
-        Gdx.gl.glClearColor(.5f, .7f, .9f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // --- DIBUJAR MAPA ---
+        // --- ACTUALIZACIÓN ---
+        // Pasamos el mapManager al player para checar colisiones
+        player.update(delta, ctrl, mapManager);
+
+        // La cámara sigue al jugador
+        camera.position.set(player.getX(), player.getY(), 0);
         camera.update();
+
+        // --- RENDER MUNDO ---
         renderer.setView(camera);
         renderer.render();
 
-        // --- DIBUJAR UI ---
+        // Dibujar Player usando la escala del mundo
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        player.draw(batch);
+        batch.end();
+
+        // --- RENDER UI ---
         stage.act(delta);
         stage.draw();
     }
 
     @Override
     public void resize(int width, int height) {
-        // Actualiza el viewport de la UI para que los botones no se muevan de lugar
         stage.getViewport().update(width, height, true);
-    }
-
-    @Override
-    public void hide() {
-        // Liberar recursos al cambiar de pantalla
-        dispose();
+        // Actualizar cámara del mundo si es necesario
+        camera.viewportWidth = 20;
+        camera.viewportHeight = 20 * ((float) height / width);
+        camera.update();
     }
 
     @Override
     public void dispose() {
-        if (manager != null) manager.dispose();
-        if (renderer != null) renderer.dispose();
-        if (stage != null) stage.dispose();
-        if (texBack != null) texBack.dispose();
+        mapManager.dispose();
+        renderer.dispose();
+        player.dispose();
+        stage.dispose();
+        texBack.dispose();
     }
 }

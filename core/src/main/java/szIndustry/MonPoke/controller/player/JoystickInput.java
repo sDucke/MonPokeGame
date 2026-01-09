@@ -17,10 +17,10 @@ public class JoystickInput {
         ctrl.joyY = y; // -1 abajo, +1 arriba
 
         // Convertimos joystick a estados
-        ctrl.moverIzquierda = (x < -0.2f);
-        ctrl.moverDerecha   = (x >  0.2f);
-        ctrl.moverAbajo     = (y < -0.2f);
-        ctrl.moverArriba    = (y >  0.2f);
+        ctrl.isLeft = (x < -0.2f);
+        ctrl.isRight   = (x >  0.2f);
+        ctrl.isDown     = (y < -0.2f);
+        ctrl.isUp    = (y >  0.2f);
     }
 
     /** Botón de interacción en móvil */

@@ -3,10 +3,10 @@ package szIndustry.MonPoke.controller.player;
 public class VirtualController {
 
     // Movimiento básico
-    public boolean moverArriba;
-    public boolean moverAbajo;
-    public boolean moverIzquierda;
-    public boolean moverDerecha;
+    public boolean isUp;
+    public boolean isDown;
+    public boolean isLeft;
+    public boolean isRight;
 
     // Interacción con objetos/NPC
     public boolean interactuar;
@@ -19,7 +19,7 @@ public class VirtualController {
     public boolean usarJoystick = false;
 
     public void reset() {
-        moverArriba = moverAbajo = moverIzquierda = moverDerecha = false;
+        isUp = isDown = isLeft = isRight = false;
         interactuar = false;
     }
 }
