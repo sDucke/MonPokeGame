@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="90" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="1">
  <tileset firstgid="1" name="items" tilewidth="32" tileheight="32" tilecount="5208" columns="8">
-  <image source="pokemon_tileset_from_public_tiles_32x32_by_chaoticcherrycake_dab2byf.png" width="256" height="20832"/>
+  <image source="tilesetpokemon.png" width="256" height="20832"/>
  </tileset>
- <layer id="2" name="Fondo" width="90" height="90">
+ <layer id="2" name="Fondo" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt2MEJwjAAheGiuEQ2cB33X8EdPIjYQ6UmJK9Kvg8ezbU/vaTLAgAAAAAAAHMpq9FXWT23zvRTPoz+dM7QOEdjZnO7PMdYOmfonKFzhs4ZOmfonKFzhs4ZOmfoPN6rsc5t1v1+ff/s6HazdK619f7X83s697HX+ZvdT3XTWedRdM7QOUPnDJ0zdM7QOUPnDJ0zWu/dLXdznXUerfbfT8/N5Ii+RWffMwAAAAAAAAAAAAAA0OQBWlwDng==
+   eJxjYBgFgwEEsdLPHmS7Ru0d/vbSAuOyFxlrMg+MvdjcAcMDZS8x+C0TJh61d9TeUXtH7aWHvdTAQ9FeSuoHYgG143nU3lF7aWEvADR1wNk=
   </data>
  </layer>
- <layer id="5" name="Fondo1" width="90" height="90">
+ <layer id="5" name="Fondo1" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwzENAAAMA6DOv+NetbEDEnpJVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX13UYwHng==
+   eJztwzENAAAMA6DOv+NeFTJI6CVVVVX13QHiwHKa
   </data>
  </layer>
- <layer id="7" name="Cesped" width="90" height="90">
+ <layer id="7" name="Cesped" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0rsKgDAQRcElf6pWaqX+P5gmzZLSB4QZuP1y2AgAAAAAAAAAAAAAAAAAAADom0rEnLaUv68az1qbbmm7zo9rnRud3+Gfv3HUpmfapTMAAAAAAAAAAAAAAAAAwJBuu9ML0Q==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="8" name="Flores" width="90" height="90">
+ <layer id="8" name="Flores" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0rEJACAUQ8Fg4Sg27uX+I4ilvR+bO8gCjyQAAAAAAAAAAAAAAAAAAADAb6vdo8ZpO3syus6V/BkAAAAAAAAAAAAAAAAAAN7ZHdUEbg==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="11" name="Arboles" width="90" height="90">
+ <layer id="11" name="Arboles" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt17FKA1EQBdC3Nv547LTQVGoRoo1JiqApggqGaKV+gX+TG4IkTWBZeWjkHLiwMM3jsgxMKQAAAAAAAAAAAAAAAAAckvumlIdk1vz2S/63x/T7lDzruapl+n1N3vRc1Xv6/Ug+k5ejTdb2fcOh6OWfPrE/qjtNx2fJ13Ep82YT6lik27tkkEz1XM1gp1t7pJ5ps90Z33uEn2tzD55ndpH0dd5Zm3vwMrOr5FrPnbW5B4eZ3SS3eu5s9x7cZ5TZOJnoGQAAAAAAAAAAAAAAAODPWgHQ8iny
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="10" name="Casa2" width="90" height="90">
+ <layer id="10" name="Casa2" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0DsOglAARNG3A/a/LEELUQoFCz7uwVnAK0lUck5y+8mUAgAAAAAAAAAAAAAAwD85NaW0qat0Tpfm2wuP4Zof+3SrdE+Dn3fxyI/PNFaa0svPu5jz45LWSlt6+xkAAAAAAAAAAAAAAAAAAAAAAH7WB73eIXk=
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="9" name="Casa1" width="90" height="90">
+ <layer id="9" name="Casa1" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt0ElKA1EYhdG3hBD3vwybic1EDWgSQZMImkTQJE5sJjYTm+sGLCgoalDnwMc/ezxuKQAAAAAAAAAAAAAAwHa/lJ20m/b6bf+mPWe9Us7TMI1q3HHv//f3s+1BOkxHHd75MjtdpUma1rizip2Ps+1JOk2DDu98k51u0zwtatxlxc7DbDtK43TR4Z3vs9NDWqV1jbup2HmSbadplq47vHPT5tl2kZbpzs6NWWXbddqkRzs35inbPqeX9Grnxrxl2/f0kT7t3JivbPudfv423mr7NwAAAAAAAAAAAAAAAAAAAAC05RcmeGHy
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="12" name="Luces" width="90" height="90">
+ <layer id="12" name="Luces" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1rEJACAMAMGUjun0ls6gA6QSUdA7SC8pPkYAAAAAAAAAAAAAAAAAAJzRStQ+5/Y7gHfNznBAt+cl7iC/yFqsz/tlLdZnwH8DAAAAAAAAAAAAAAAA4E0DwOINmQ==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer id="3" name="Extras" width="90" height="90">
+ <layer id="3" name="Extras" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt17EKwjAQANBsJV9pf6N+jR+lTuqkW110VrziUK0SC4IKvgfHHeEC4SghTQkAAAAAAAAAAAAAAAAAKJnnlBYRy9yvbaPe5T7zvlXMcR2xuZlnG/U+9xngmSanWRffPgfw25rCW2LqnQG8EHdI3UWp51SldK6u9SHysXpc57mJe/gjdvENx791Pcxjekp7uLeN+bQRwzymp7QHAAAAAAAAAAAAAAAA+G8Xb7dCgw==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
 </map>
