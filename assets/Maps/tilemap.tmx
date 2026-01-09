@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="1">
  <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
   <image source="tileset.png" width="448" height="640"/>
   <tile id="186">
@@ -37,6 +37,7 @@
     <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
    </objectgroup>
   </tile>
+  <tile id="244" type="NPCTEST-cap1"/>
   <tile id="270">
    <objectgroup draworder="index" id="2">
     <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
@@ -360,6 +361,11 @@
  <layer id="8" name="collisions" width="42" height="42">
   <data encoding="base64" compression="zlib">
    eJztmXEKgyAUh43t/x2ktrFTdJAOEqxjDGr36CAepAtMGZL8UFPyZYIfPOrVA7+sJ4RNxViTKO4iHiKeHnUzY+x13RfUzGz13MJWUzxXQjxt5Oj5vTD2FjFc/rk8H0VMWj5o97Eec0pP9MIcvfT7mFN6qpCMMC7mWI85lScVOXr6rOWp1/ktdE8X+H2Z+iYkV/AEnq7+tvX7QuwZ2t+2fr9Vfp6pqTPxbDPx7DLx9F2XjmAy9LniCE/X+L6caT5dHO3pO7dYV+YzLsXTjek7Tb0uxaB4xqV4xqV4xuVsnhxCMUMeAsV/O9eOHK4vlnrTc6VCOsp/TsT2XNRwOCqkY23wPBvSsY3gST3v0rHTPE1j2d7FkUjHPoP33gfuN23tV+3d77LtgX1E/AB8wZ8w
+  </data>
+ </layer>
+ <layer id="10" name="NPC" width="42" height="42">
+  <data encoding="base64" compression="zlib">
+   eJztziEBAAAIA7D374snxAWILcESAAAAWnMdAAAA4K0FtBcA9g==
   </data>
  </layer>
 </map>

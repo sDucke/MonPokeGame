@@ -1,0 +1,10 @@
+{
+  "NPCTEST": {
+    "cap1": "¡Hola! Bienvenido al mundo MonPoke.",
+    "cap2": "Veo que ya tienes tu primer compañero."
+  },
+  "npc_rival": {
+    "cap1": "No te cruces en mi camino.",
+    "cap2": "¡Prepárate para la batalla!"
+  }
+}
