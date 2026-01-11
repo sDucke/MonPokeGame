@@ -11,23 +11,40 @@ public class TextManager {
 
     public static void load() {
         if (font == null) {
-            // Se recomienda usar un archivo .fnt generado para la resolución de tu juego
+            // Cargamos la fuente
             font = new BitmapFont(Gdx.files.internal("font/main.fnt"));
-            // Suaviza los bordes para que no se vea pixelado al escalar
+
+            // Filtros para que no se pixele al escalarlo a 4.0f
             font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+            // IMPORTANTE: Desactivamos el marcado de colores por si el archivo .fnt trae basura
+            font.getData().markupEnabled = false;
         }
     }
 
     public static void draw(SpriteBatch batch, String msg, float x, float y, Color color, float scale) {
         load();
+
+        // 1. Aseguramos que el Batch no tenga un tinte previo que bloquee el color
+        batch.setColor(Color.WHITE);
+
+        // 2. Aplicamos el color deseado a la fuente
         font.setColor(color);
-        // Ajusta la escala: 1f es tamaño original.
-        // En mundos de 20 unidades, valores como 0.02f son correctos.
+
+        // 3. Aplicamos la escala
         font.getData().setScale(scale);
+
+        // 4. Dibujamos
         font.draw(batch, msg, x, y);
+
+        // 5. Reset del color de la fuente para la siguiente llamada (evita contaminación)
+        font.setColor(Color.WHITE);
     }
 
     public static void dispose() {
-        if (font != null) font.dispose();
+        if (font != null) {
+            font.dispose();
+            font = null;
+        }
     }
 }
