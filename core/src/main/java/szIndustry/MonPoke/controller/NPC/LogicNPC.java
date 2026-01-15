@@ -3,7 +3,7 @@ package szIndustry.MonPoke.controller.NPC;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import szIndustry.MonPoke.view.ui.DialogueManager; // La clase que se encarga de mostrar
+import szIndustry.MonPoke.view.ui.DialogueManager;
 
 public class LogicNPC {
     private JsonValue root;
